@@ -19,7 +19,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         )}
       >
         <Header />
-        <main className="container mb-2 mt-16 flex-grow">{children}</main>
+        <main className="container mb-2 mt-20 flex-grow">{children}</main>
         <Footer />
       </body>
     </html>

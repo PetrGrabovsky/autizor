@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import clsx from 'clsx';
+import Logo from './logo';
 
 export default function Header() {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState<boolean>(false);
@@ -12,12 +13,13 @@ export default function Header() {
     <header className="fixed inset-0 h-fit w-full bg-backgroundSecondary">
       <div
         className={clsx(
-          isMobileNavOpen ? 'h-screen' : 'h-14',
+          isMobileNavOpen ? 'h-screen' : 'h-16',
           'container overflow-hidden transition-all duration-300 ease-in-out'
         )}
       >
-        <div className="flex h-14 items-center justify-between">
-          <h1>AUTIZOR</h1>
+        <div className="flex h-16 items-center justify-between">
+          <h1 className="hidden">AUTIZOR</h1>
+          <Logo />
           <button onClick={handleMenuButtonClick}>MENU</button>
         </div>
         <nav
