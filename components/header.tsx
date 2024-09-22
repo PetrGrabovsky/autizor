@@ -1,13 +1,17 @@
 'use client';
 
-import { useState } from 'react';
 import clsx from 'clsx';
 import Logo from './logo';
+import { FiMenu } from 'react-icons/fi';
+import { FiX } from 'react-icons/fi';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { toggleMobileNav } from '@/store/slices/ui-slice';
 
 export default function Header() {
-  const [isMobileNavOpen, setIsMobileNavOpen] = useState<boolean>(false);
+  const dispatch = useAppDispatch();
+  const isMobileNavOpen = useAppSelector((state) => state.ui.isMobileNavOpen);
 
-  const handleMenuButtonClick = () => setIsMobileNavOpen(!isMobileNavOpen);
+  const handleMenuButtonClick = () => dispatch(toggleMobileNav());
 
   return (
     <header className="fixed inset-0 h-fit w-full bg-backgroundSecondary">
@@ -18,14 +22,16 @@ export default function Header() {
         )}
       >
         <div className="flex h-16 items-center justify-between">
-          <h1 className="hidden">AUTIZOR</h1>
+          <h1 className="sr-only">AUTIZOR</h1>
           <Logo />
-          <button onClick={handleMenuButtonClick}>MENU</button>
+          <button onClick={handleMenuButtonClick} className="h-7 w-7">
+            {isMobileNavOpen ? <FiX className="h-full w-full" /> : <FiMenu className="h-full w-full" />}
+          </button>
         </div>
         <nav
           className={clsx(
             isMobileNavOpen ? 'opacity-100' : 'opacity-0',
-            'flex h-full items-center justify-center transition-opacity duration-300 ease-in-out'
+            'flex h-full items-center justify-center transition-all duration-300 ease-in-out'
           )}
         >
           <ul className="flex h-full flex-col items-center justify-center">

@@ -1,7 +1,11 @@
+'use client';
+
 import { ReactNode } from 'react';
 import './globals.css';
 import { inter } from '@/utils/fonts';
 import clsx from 'clsx';
+import { Provider } from 'react-redux';
+import { store } from '@/store/store';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
 
@@ -18,9 +22,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
           'flex min-h-screen flex-col bg-backgroundPrimary text-textPrimary antialiased'
         )}
       >
-        <Header />
-        <main className="container mb-2 mt-20 flex-grow">{children}</main>
-        <Footer />
+        <Provider store={store}>
+          <Header />
+          <main className="container mb-2 mt-20 flex-grow">{children}</main>
+          <Footer />
+        </Provider>
       </body>
     </html>
   );
