@@ -17,13 +17,12 @@ export default function Header() {
     <header className="fixed inset-0 h-fit w-full bg-backgroundSecondary">
       <div
         className={clsx(
-          isMobileNavOpen ? 'h-screen' : 'h-16',
+          isMobileNavOpen ? 'h-screen' : 'h-14',
           'container overflow-hidden transition-all duration-300 ease-in-out'
         )}
       >
-        <div className="flex h-16 items-center justify-between">
-          <h1 className="sr-only">AUTIZOR</h1>
-          <Logo />
+        <div className="flex h-14 items-center justify-between">
+          <Logo className="h-6" />
           <button onClick={handleMenuButtonClick} className="h-7 w-7">
             {isMobileNavOpen ? <FiX className="h-full w-full" /> : <FiMenu className="h-full w-full" />}
           </button>

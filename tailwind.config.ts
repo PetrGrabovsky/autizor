@@ -12,6 +12,7 @@ const config: Config = {
         textPrimary: '#D9D9D9',
         backgroundPrimary: '#212121',
         backgroundSecondary: '#171717',
+        brandAccent: '#007BFF',
       },
       container: {
         center: true,
