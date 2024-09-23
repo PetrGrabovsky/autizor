@@ -6,8 +6,7 @@ import { inter } from '@/utils/fonts';
 import clsx from 'clsx';
 import { Provider } from 'react-redux';
 import { store } from '@/store/store';
-import Header from '@/components/header';
-import Footer from '@/components/footer';
+import LayoutContent from '@/components/layout-content';
 
 interface RootLayoutProps {
   children: ReactNode;
@@ -23,9 +22,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         )}
       >
         <Provider store={store}>
-          <Header />
-          <main className="container mb-2 mt-20 flex-grow">{children}</main>
-          <Footer />
+          <LayoutContent>{children}</LayoutContent>
         </Provider>
       </body>
     </html>
