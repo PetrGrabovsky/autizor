@@ -4,12 +4,14 @@ interface UIState {
   isMobileNavOpen: boolean;
   isMobileView: boolean;
   isScrolled: boolean;
+  isScrollDisabled: boolean;
 }
 
 const initialState: UIState = {
   isMobileNavOpen: false,
   isMobileView: true,
   isScrolled: false,
+  isScrollDisabled: false,
 };
 
 const uiSlice = createSlice({
@@ -28,8 +30,11 @@ const uiSlice = createSlice({
     setScrolled: (state, action: PayloadAction<boolean>) => {
       state.isScrolled = action.payload;
     },
+    setDisableScroll: (state, action: PayloadAction<boolean>) => {
+      state.isScrollDisabled = action.payload;
+    },
   },
 });
 
-export const { toggleMobileNav, setMobileView, setScrolled, setMobileNavOpen } = uiSlice.actions;
+export const { toggleMobileNav, setMobileView, setScrolled, setMobileNavOpen, setDisableScroll } = uiSlice.actions;
 export default uiSlice.reducer;

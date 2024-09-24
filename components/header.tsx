@@ -5,7 +5,7 @@ import Logo from './logo';
 import { FiMenu } from 'react-icons/fi';
 import { FiX } from 'react-icons/fi';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { toggleMobileNav } from '@/store/slices/ui-slice';
+import { toggleMobileNav, setDisableScroll } from '@/store/slices/ui-slice';
 import { throttle } from 'lodash';
 import { useCallback, useEffect } from 'react';
 
@@ -17,8 +17,9 @@ export default function Header() {
   const handleMobileNavToggle = useCallback(
     throttle(() => {
       dispatch(toggleMobileNav());
+      dispatch(setDisableScroll(!isMobileNavOpen));
     }, 200),
-    [dispatch]
+    [dispatch, isMobileNavOpen]
   );
 
   useEffect(() => {

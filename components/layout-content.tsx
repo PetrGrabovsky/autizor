@@ -1,7 +1,7 @@
 import { ReactNode, useEffect, useCallback } from 'react';
 import Header from './header';
 import Footer from './footer';
-import { useAppDispatch } from '@/store/hooks';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { setMobileView, setScrolled, setMobileNavOpen } from '@/store/slices/ui-slice';
 import { throttle } from 'lodash';
 
@@ -14,6 +14,7 @@ interface LayoutContentProps {
 
 export default function LayoutContent({ children }: LayoutContentProps) {
   const dispatch = useAppDispatch();
+  const isScrollDisabled = useAppSelector((state) => state.ui.isScrollDisabled);
 
   const handleResize = useCallback(
     throttle(() => {
@@ -48,6 +49,15 @@ export default function LayoutContent({ children }: LayoutContentProps) {
       handleScroll.cancel();
     };
   }, [handleResize, handleScroll]);
+
+  useEffect(() => {
+    if (isScrollDisabled) document.body.style.overflow = 'hidden';
+    else document.body.style.overflow = 'unset';
+
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isScrollDisabled]);
 
   return (
     <>
