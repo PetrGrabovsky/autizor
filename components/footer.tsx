@@ -1,5 +1,4 @@
 import { useAppSelector } from '@/store/hooks';
-import { defaultTransition } from '@/utils/styles';
 import clsx from 'clsx';
 
 export default function Footer() {
@@ -9,15 +8,13 @@ export default function Footer() {
     <footer
       className={clsx(
         isMobileNavOpen ? 'h-0' : 'h-10',
-        defaultTransition,
-        'flex items-center justify-center overflow-hidden bg-backgroundSecondary'
+        'backgroundWithBlur smoothTransition flex items-center justify-center overflow-hidden'
       )}
     >
       <div
         className={clsx(
           isMobileNavOpen ? 'opacity-0' : 'opacity-100',
-          defaultTransition,
-          'container flex items-center justify-between'
+          'smoothTransition container flex items-center justify-between'
         )}
       >
         <p>Footer</p>

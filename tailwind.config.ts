@@ -12,7 +12,7 @@ const config: Config = {
       colors: {
         textPrimary: '#D9D9D9',
         backgroundPrimary: '#212121',
-        backgroundSecondary: '#171717',
+        backgroundSecondary: '#1A1A1A',
         brandAccent: '#007BFF',
       },
       container: {

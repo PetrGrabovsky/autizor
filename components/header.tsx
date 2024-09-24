@@ -6,7 +6,6 @@ import { FiMenu } from 'react-icons/fi';
 import { FiX } from 'react-icons/fi';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { toggleMobileNav } from '@/store/slices/ui-slice';
-import { defaultTransition } from '@/utils/styles';
 import { throttle } from 'lodash';
 import { useCallback, useEffect } from 'react';
 
@@ -29,8 +28,8 @@ export default function Header() {
   }, [handleMobileNavToggle]);
 
   return (
-    <header className="fixed inset-0 h-fit w-full bg-backgroundSecondary">
-      <div className={clsx(isMobileNavOpen ? 'h-screen' : 'h-14', defaultTransition, 'container overflow-hidden')}>
+    <header className="backgroundWithBlur fixed inset-0 h-fit w-full">
+      <div className={clsx(isMobileNavOpen ? 'h-screen' : 'h-14', 'smoothTransition container overflow-hidden')}>
         <div className="flex h-14 items-center justify-between">
           <Logo className="h-6" />
           {isMobileView && (
@@ -42,8 +41,7 @@ export default function Header() {
         <nav
           className={clsx(
             isMobileNavOpen ? 'opacity-100' : 'opacity-0',
-            defaultTransition,
-            'flex h-full items-center justify-center'
+            'smoothTransition flex h-full items-center justify-center'
           )}
         >
           <ul className="flex h-full flex-col items-center justify-center">
