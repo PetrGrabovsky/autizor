@@ -19,6 +19,9 @@ const uiSlice = createSlice({
     toggleMobileNav: (state) => {
       state.isMobileNavOpen = !state.isMobileNavOpen;
     },
+    setMobileNavOpen: (state, action: PayloadAction<boolean>) => {
+      state.isMobileNavOpen = action.payload;
+    },
     setMobileView: (state, action: PayloadAction<boolean>) => {
       state.isMobileView = action.payload;
     },
@@ -28,5 +31,5 @@ const uiSlice = createSlice({
   },
 });
 
-export const { toggleMobileNav, setMobileView, setScrolled } = uiSlice.actions;
+export const { toggleMobileNav, setMobileView, setScrolled, setMobileNavOpen } = uiSlice.actions;
 export default uiSlice.reducer;

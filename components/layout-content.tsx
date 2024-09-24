@@ -2,7 +2,7 @@ import { ReactNode, useEffect, useCallback } from 'react';
 import Header from './header';
 import Footer from './footer';
 import { useAppDispatch } from '@/store/hooks';
-import { setMobileView, setScrolled } from '@/store/slices/ui-slice';
+import { setMobileView, setScrolled, setMobileNavOpen } from '@/store/slices/ui-slice';
 import { throttle } from 'lodash';
 
 const MOBILE_BREAKPOINT = 768;
@@ -19,6 +19,8 @@ export default function LayoutContent({ children }: LayoutContentProps) {
     throttle(() => {
       const isMobileView = window.innerWidth < MOBILE_BREAKPOINT;
       dispatch(setMobileView(isMobileView));
+
+      if (!isMobileView) dispatch(setMobileNavOpen(false));
     }, 200),
     [dispatch]
   );
