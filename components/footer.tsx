@@ -5,20 +5,22 @@ export default function Footer() {
   const isMobileNavOpen = useAppSelector((state) => state.ui.isMobileNavOpen);
 
   return (
-    <footer
-      className={clsx(
-        isMobileNavOpen ? 'h-0' : 'h-10',
-        'backgroundWithBlur smoothTransition flex items-center justify-center overflow-hidden'
-      )}
-    >
+    <footer className="flex h-10 items-end justify-center overflow-hidden">
       <div
         className={clsx(
-          isMobileNavOpen ? 'opacity-0' : 'opacity-100',
-          'smoothTransition container flex items-center justify-between'
+          isMobileNavOpen ? 'h-0' : 'h-10',
+          'smoothTransition backgroundWithBlur flex w-full items-center justify-center'
         )}
       >
-        <p>Footer</p>
-        <p>By Petr Grabovský</p>
+        <div
+          className={clsx(
+            isMobileNavOpen ? 'opacity-0' : 'opacity-100',
+            'smoothTransition container flex items-center justify-between'
+          )}
+        >
+          <p>Footer</p>
+          <p>By Petr Grabovský</p>
+        </div>
       </div>
     </footer>
   );
