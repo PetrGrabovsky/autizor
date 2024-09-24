@@ -10,10 +10,10 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        textPrimary: '#D9D9D9',
+        textPrimary: '#d9d9d9',
         backgroundPrimary: '#212121',
-        backgroundSecondary: '#1A1A1A',
-        brandAccent: '#007BFF',
+        backgroundSecondary: '#1a1a1a',
+        brandAccent: '#007bff',
       },
       container: {
         center: true,
