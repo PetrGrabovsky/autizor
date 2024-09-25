@@ -5,8 +5,7 @@ export const useDisableScroll = () => {
   const isScrollDisabled = useAppSelector((state) => state.ui.isScrollDisabled);
 
   useEffect(() => {
-    if (isScrollDisabled) document.body.style.overflow = 'hidden';
-    else document.body.style.overflow = 'unset';
+    document.body.style.overflow = isScrollDisabled ? 'hidden' : 'unset';
 
     return () => {
       document.body.style.overflow = 'unset';
