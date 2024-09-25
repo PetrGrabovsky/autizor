@@ -5,9 +5,10 @@ import Logo from './logo';
 import { FiMenu } from 'react-icons/fi';
 import { FiX } from 'react-icons/fi';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { toggleMobileNav, setDisableScroll } from '@/store/slices/ui-slice';
+import { setScrollDisabled, setMobileNavOpen } from '@/store/slices/ui-slice';
 import { throttle } from 'lodash';
 import { useCallback, useEffect } from 'react';
+import Navigation from './navigation';
 
 export default function Header() {
   const dispatch = useAppDispatch();
@@ -16,16 +17,21 @@ export default function Header() {
 
   const handleMobileNavToggle = useCallback(
     throttle(() => {
-      dispatch(toggleMobileNav());
-      dispatch(setDisableScroll(!isMobileNavOpen));
+      dispatch(setMobileNavOpen(!isMobileNavOpen));
+      dispatch(setScrollDisabled(!isMobileNavOpen));
     }, 200),
     [dispatch, isMobileNavOpen]
   );
 
+  const handleLinkClick = useCallback(() => {
+    setTimeout(() => {
+      dispatch(setMobileNavOpen(false));
+      dispatch(setScrollDisabled(false));
+    }, 200);
+  }, [dispatch]);
+
   useEffect(() => {
-    return () => {
-      handleMobileNavToggle.cancel();
-    };
+    return () => handleMobileNavToggle.cancel();
   }, [handleMobileNavToggle]);
 
   return (
@@ -39,19 +45,7 @@ export default function Header() {
             </button>
           )}
         </div>
-        <nav
-          className={clsx(
-            isMobileNavOpen ? 'opacity-100' : 'opacity-0',
-            'smoothTransition flex h-full items-center justify-center'
-          )}
-        >
-          <ul className="flex h-full flex-col items-center justify-center">
-            <li>ODKAZ 1</li>
-            <li>ODKAZ 2</li>
-            <li>ODKAZ 3</li>
-            <li>ODKAZ 4</li>
-          </ul>
-        </nav>
+        <Navigation isMobileNavOpen={isMobileNavOpen} handleLinkClick={handleLinkClick} />
       </div>
     </header>
   );
